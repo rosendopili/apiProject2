@@ -2,8 +2,8 @@ package com.example.apiPROJECT.model;
 
 import javax.persistence.*;
 
-//@Entity
-@Table(name = "user_profile")
+@Entity
+@Table(name = "userProfile")
 public class UserProfile {
     @Id
     @Column
@@ -21,13 +21,17 @@ public class UserProfile {
 
 //    @Column
 //    private String profilePic;
-    //will determine whether or not to implement this functionality at a later date
+//    will determine whether or not to implement this functionality at a later date
 
-    @OneToOne (mappedBy = "user_profile",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToOne (mappedBy = "userProfile",
+            cascade = {CascadeType.ALL})
     private User user;
 
     public UserProfile() {}
+
+    public User getUser(){return user;}
+
+    public void setUser(User user){ this.user = user;}
 
     public long getId(){
         return id;
