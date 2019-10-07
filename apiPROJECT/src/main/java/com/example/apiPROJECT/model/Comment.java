@@ -1,32 +1,32 @@
 package com.example.apiPROJECT.model;
-
 import javax.persistence.*;
-import java.util.List;
 
-//@Entity
+
+@Entity
 @Table(name = "comment")
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column
     private String title;
+
+    @Column
     private String body;
 
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH} )
-    @JoinTable(name = "user_comment",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = @JoinColumn(name = "comment_id"))
-    private List<User> users;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
 
     private Comment() {}
 
-    public List<User> getUsers(){ return users; }
+    public User getUser(){return user;}
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+    public void setUser(User user){this.user = user;}
 
     public long getId() {
         return id;
