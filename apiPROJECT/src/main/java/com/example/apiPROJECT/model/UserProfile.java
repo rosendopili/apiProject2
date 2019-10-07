@@ -2,7 +2,7 @@ package com.example.apiPROJECT.model;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Table(name = "user_profile")
 public class UserProfile {
     @Id

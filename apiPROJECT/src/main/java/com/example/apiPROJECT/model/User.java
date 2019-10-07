@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity
+//@Entity
 @Table (name = "users")
 public class User<Post> {
     @Id
