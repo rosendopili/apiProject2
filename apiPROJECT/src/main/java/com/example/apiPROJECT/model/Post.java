@@ -3,7 +3,7 @@ package com.example.apiPROJECT.model;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+//@Entity
 @Table(name = "post")
 public class Post {
     @Id
