@@ -54,7 +54,6 @@ public class UserServiceImpl implements UserService{
     public String createUser(User newUser) {
         newUser.setUsername(newUser.getUsername());
         newUser.setPassword(newUser.getPassword());
-        newUser.setEmail(newUser.getEmail());
         if(userRepository.save(newUser) != null){
             UserDetails userDetails = loadUserByUsername(newUser.getUsername());
             return jwtUtil.generateToken(userDetails);
