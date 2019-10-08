@@ -1,6 +1,7 @@
 package com.example.springbootmonolith.Service;
 
 import com.example.springbootmonolith.model.Comment;
+import org.springframework.http.HttpStatus;
 
 public interface CommentService {
 
@@ -8,5 +9,5 @@ public interface CommentService {
 
     public Iterable<Comment> listComments();
 
-    public Comment deleteComment(Comment comment);
+    public HttpStatus deleteComment(Long commentId);
 }
