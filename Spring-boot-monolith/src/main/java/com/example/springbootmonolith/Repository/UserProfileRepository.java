@@ -1,6 +1,6 @@
 package com.example.springbootmonolith.Repository;
 
-import com.example.springbootmonolith.Model.UserProfile;
+import com.example.springbootmonolith.model.UserProfile;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

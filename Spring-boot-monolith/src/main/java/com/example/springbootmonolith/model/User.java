@@ -1,7 +1,11 @@
-package com.example.springbootmonolith.Model;
+package com.example.springbootmonolith.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,6 +40,22 @@ public class User {
         private List<Comment> comments;
 
     public User() {
+    }
+
+    public List<Comment> addComment (Comment comment){
+        if (comments == null)
+            comments = new ArrayList<>();
+        comments.add(comment);
+
+        return comments;
+    }
+
+    public List<Post> addPost (Post post){
+        if (posts == null)
+            posts = new ArrayList<>();
+        posts.add(post);
+
+        return posts;
     }
 
     public List<Comment> getComments(){return comments;}
