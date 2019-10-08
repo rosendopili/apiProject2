@@ -1,6 +1,6 @@
 package com.example.springbootmonolith.Service;
 
-import com.example.springbootmonolith.model.Post;
+import com.example.springbootmonolith.Model.Post;
 
 public interface PostService {
 
