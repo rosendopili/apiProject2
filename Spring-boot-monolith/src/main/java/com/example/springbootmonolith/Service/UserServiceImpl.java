@@ -1,5 +1,6 @@
 package com.example.springbootmonolith.Service;
 
+import com.example.springbootmonolith.Config.JwtUtil;
 import com.example.springbootmonolith.Repository.CommentRepository;
 import com.example.springbootmonolith.Repository.PostRepository;
 import com.example.springbootmonolith.Repository.UserRepository;
@@ -24,6 +25,9 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     PostService postService;
 
     @Autowired
@@ -32,14 +36,29 @@ public class UserServiceImpl implements UserService{
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    JwtUtil jwtUtil;
 
     @Override
-    public String login(User user) {
+    public String login(User user){
+        User newUser = userRepository.findByUsername(user.getUsername());
+        if(newUser != null && user.getPassword().equals(newUser.getPassword())){
+            UserDetails userDetails = loadUserByUsername(newUser.getUsername());
+
+            return jwtUtil.generateToken(userDetails);
+        }
         return null;
     }
 
     @Override
-    public User createUser(User newUser) {
+    public String createUser(User newUser) {
+        newUser.setUsername(newUser.getUsername());
+        newUser.setPassword(newUser.getPassword());
+        newUser.setEmail(newUser.getEmail());
+        if(userRepository.save(newUser) != null){
+            UserDetails userDetails = loadUserByUsername(newUser.getUsername());
+            return jwtUtil.generateToken(userDetails);
+        }
         return null;
     }
 

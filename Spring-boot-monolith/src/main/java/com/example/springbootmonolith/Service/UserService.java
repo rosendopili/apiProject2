@@ -8,7 +8,7 @@ public interface UserService extends UserDetailsService {
 
     public String login (User user);
 
-    public User createUser (User newUser);
+    public String createUser (User newUser);
 
     public User addPost(String username, long postId);
 
