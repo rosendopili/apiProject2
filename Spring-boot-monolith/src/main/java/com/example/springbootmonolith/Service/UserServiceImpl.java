@@ -3,10 +3,8 @@ package com.example.springbootmonolith.Service;
 import com.example.springbootmonolith.Repository.CommentRepository;
 import com.example.springbootmonolith.Repository.PostRepository;
 import com.example.springbootmonolith.Repository.UserRepository;
-import com.example.springbootmonolith.model.User;
+import com.example.springbootmonolith.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service

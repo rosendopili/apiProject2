@@ -1,13 +1,14 @@
-package com.example.springbootmonolith.model;
+package com.example.springbootmonolith.Model;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "post")
-public class Post {
+@Table(name = "comment")
+public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
@@ -20,7 +21,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private Post(){}
+    private Comment() {}
 
     public User getUser(){return user;}
 
@@ -49,4 +50,5 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
 }

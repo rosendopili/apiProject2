@@ -1,4 +1,4 @@
-package com.example.springbootmonolith.model;
+package com.example.springbootmonolith.Model;
 
 
 import javax.persistence.*;

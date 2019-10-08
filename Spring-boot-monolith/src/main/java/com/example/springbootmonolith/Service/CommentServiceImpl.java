@@ -1,7 +1,7 @@
 package com.example.springbootmonolith.Service;
 
 import com.example.springbootmonolith.Repository.CommentRepository;
-import com.example.springbootmonolith.model.Comment;
+import com.example.springbootmonolith.Model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CommentServiceImpl implements CommentService {

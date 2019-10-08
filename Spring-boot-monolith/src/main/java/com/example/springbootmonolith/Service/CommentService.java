@@ -1,6 +1,6 @@
 package com.example.springbootmonolith.Service;
 
-import com.example.springbootmonolith.model.Comment;
+import com.example.springbootmonolith.Model.Comment;
 
 public interface CommentService {
 

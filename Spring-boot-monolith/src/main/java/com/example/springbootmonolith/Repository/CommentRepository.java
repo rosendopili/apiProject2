@@ -1,6 +1,6 @@
 package com.example.springbootmonolith.Repository;
 
-import com.example.springbootmonolith.model.Comment;
+import com.example.springbootmonolith.Model.Comment;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
