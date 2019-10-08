@@ -23,6 +23,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    //consider returning as void//
     public HttpStatus deletePost(Long postId) {
         postRepository.deleteById(postId);
         return HttpStatus.OK;
