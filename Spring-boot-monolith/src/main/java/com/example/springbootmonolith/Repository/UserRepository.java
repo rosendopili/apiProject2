@@ -1,11 +1,8 @@
 package com.example.springbootmonolith.Repository;
 
-<<<<<<< HEAD
 import com.example.springbootmonolith.model.User;
 import org.springframework.data.jpa.repository.Query;
-=======
-import com.example.springbootmonolith.Model.User;
->>>>>>> e407c732d45f0736295a89311e30d7d04418e188
+import com.example.springbootmonolith.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 //

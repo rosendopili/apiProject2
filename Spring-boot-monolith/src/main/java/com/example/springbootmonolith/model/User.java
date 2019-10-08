@@ -1,5 +1,8 @@
-package com.example.springbootmonolith.Model;
+package com.example.springbootmonolith.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.ArrayList;
