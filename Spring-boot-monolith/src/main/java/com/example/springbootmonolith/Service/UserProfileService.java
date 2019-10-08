@@ -1,6 +1,6 @@
 package com.example.springbootmonolith.Service;
 
-import com.example.springbootmonolith.Model.UserProfile;
+import com.example.springbootmonolith.model.UserProfile;
 
 public interface UserProfileService {
 

@@ -1,6 +1,6 @@
 package com.example.springbootmonolith.Service;
 
-import com.example.springbootmonolith.Model.User;
+import com.example.springbootmonolith.model.User;
 
 public interface UserService {
 
