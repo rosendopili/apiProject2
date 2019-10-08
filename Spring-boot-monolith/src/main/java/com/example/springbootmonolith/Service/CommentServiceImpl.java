@@ -3,7 +3,11 @@ package com.example.springbootmonolith.Service;
 import com.example.springbootmonolith.Repository.CommentRepository;
 import com.example.springbootmonolith.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
@@ -20,8 +24,10 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment deleteComment(Comment comment){
-        return null;
+    public HttpStatus deleteComment(Long commentId){
+        commentRepository.deleteById(commentId);
+
+        return HttpStatus.OK;
     }
 
 }

@@ -1,8 +1,10 @@
 package com.example.springbootmonolith.Service;
 
 import com.example.springbootmonolith.model.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     public String login (User user);
 
@@ -16,4 +18,5 @@ public interface UserService {
 
     public User getUser(String username);
 
+    public HttpStatus deleteById(Long userId);
 }

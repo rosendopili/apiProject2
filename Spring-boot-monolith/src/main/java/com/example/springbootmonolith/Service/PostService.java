@@ -1,6 +1,7 @@
 package com.example.springbootmonolith.Service;
 
 import com.example.springbootmonolith.model.Post;
+import org.springframework.http.HttpStatus;
 
 public interface PostService {
 
@@ -8,5 +9,5 @@ public interface PostService {
 
     public Iterable<Post> listPosts();
 
-    public Post deletePost(Post post);
+    public HttpStatus deletePost(Long postId);
 }
