@@ -8,4 +8,5 @@ public interface PostService {
 
     public Iterable<Post> listPosts();
 
+    public Post deletePost(Post post);
 }
