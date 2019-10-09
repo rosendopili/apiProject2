@@ -7,21 +7,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/comments")
 public class CommentController {
 
     @Autowired
     CommentService commentService;
 
-    @PostMapping("/user/{username}/{commentId}")
+    @PostMapping("/comment")
     public Comment createComment(@RequestBody Comment comment) {
         return commentService.createComment(comment);
     }
 
-    @GetMapping("/user/{username}/{commentId}/list")
+    @GetMapping("/comment/list")
     public Iterable<Comment> listComments() { return commentService.listComments(); }
 
-    @DeleteMapping("/user/{username}/{commentId}")
+    @DeleteMapping("/comment/delete")
     public HttpStatus deleteComment(Long commentId) { return commentService.deleteComment(commentId); }
 
 }
