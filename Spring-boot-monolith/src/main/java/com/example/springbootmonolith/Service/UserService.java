@@ -1,5 +1,6 @@
 package com.example.springbootmonolith.Service;
 
+import com.example.springbootmonolith.model.Post;
 import com.example.springbootmonolith.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,21 +21,6 @@ public interface UserService extends UserDetailsService {
      */
     public String createUser (User newUser);
 
-    /**
-     *
-     * @param username
-     * @param postId
-     * @return
-     */
-    public User addPost(String username, long postId);
-
-    /**
-     *
-     * @param username
-     * @param commentId
-     * @return
-     */
-    public User addComment(String username,long commentId);
 
     /**
      *

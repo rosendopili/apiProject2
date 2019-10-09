@@ -7,10 +7,10 @@ public interface PostService {
 
     /**
      *
-     * @param post
+     * @param newPost
      * @return
      */
-    public Post createPost(Post post);
+    public Post createPost(Post newPost, String username);
 
     /**
      *
