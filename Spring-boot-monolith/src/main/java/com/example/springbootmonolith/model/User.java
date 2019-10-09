@@ -13,6 +13,9 @@ import java.util.List;
 @Entity
 @Table (name = "users")
 public class User {
+    /**
+     * setting users datatable.
+     */
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,14 +30,24 @@ public class User {
     @Column
     private String password;
 
+
+    /**
+     * user_profile_id references UserProfile datatable.
+     */
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn (name = "user_profile_id")
     private UserProfile userProfile;
 
+    /**
+     * Post table references users table via user_id join column.
+     */
     @OneToMany(mappedBy = "user",
     cascade = CascadeType.ALL)
     private List<Post> posts;
 
+    /**
+     * Comment table references users table via user_id join column.
+     */
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL)
         private List<Comment> comments;
@@ -42,6 +55,11 @@ public class User {
     public User() {
     }
 
+    /**
+     *
+     * @param comment
+     * @return
+     */
     public List<Comment> addComment (Comment comment){
         if (comments == null)
             comments = new ArrayList<>();
@@ -50,6 +68,11 @@ public class User {
         return comments;
     }
 
+    /**
+     *
+     * @param post
+     * @return
+     */
     public List<Post> addPost (Post post){
         if (posts == null)
             posts = new ArrayList<>();

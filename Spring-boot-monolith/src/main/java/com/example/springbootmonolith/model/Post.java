@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "post")
 public class Post {
+    /**
+     * setting 'post' datatable.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -16,6 +19,9 @@ public class Post {
     @Column
     private String body;
 
+    /**
+     * user_id references 'users' table.
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

@@ -15,6 +15,12 @@ public class UserProfileServiceImpl implements UserProfileService {
     @Autowired
     UserService userService;
 
+    /**
+     *
+     * @param username
+     * @param newProfile
+     * @return
+     */
     @Override
     public UserProfile createUserProfile(String username, UserProfile newProfile) {
         User user = userService.getUser(username);
@@ -23,6 +29,11 @@ public class UserProfileServiceImpl implements UserProfileService {
         return userProfileRepository.save(newProfile);
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     @Override
     public UserProfile getUserProfile(String username) {
         return userProfileRepository.findProfileByUsername(username);

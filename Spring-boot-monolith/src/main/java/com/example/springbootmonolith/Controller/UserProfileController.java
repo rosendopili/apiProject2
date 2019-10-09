@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/profile")
 public class UserProfileController {
 
+    @Autowired
     private UserProfileService userProfileService;
 
-    @Autowired
-    public void setUserProfileService(UserProfileService userProfileService) {
-        this.userProfileService = userProfileService;
-    }
 
     @GetMapping("/{username}")
     public UserProfile getUserProfile(@PathVariable String username) {

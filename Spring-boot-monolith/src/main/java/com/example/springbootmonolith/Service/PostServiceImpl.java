@@ -12,16 +12,30 @@ public class PostServiceImpl implements PostService {
     @Autowired
     PostRepository postRepository;
 
+    /**
+     *
+     * @param post
+     * @return saved post.
+     */
     @Override
     public Post createPost(Post post) {
         return postRepository.save(post);
     }
 
+    /**
+     *
+     * @return list of all posts.
+     */
     @Override
     public Iterable<Post> listPosts() {
         return postRepository.findAll();
     }
 
+    /**
+     *
+     * @param postId
+     * @return httpstatus ok if delete post successful.
+     */
     @Override
     //consider returning as void//
     public HttpStatus deletePost(Long postId) {
