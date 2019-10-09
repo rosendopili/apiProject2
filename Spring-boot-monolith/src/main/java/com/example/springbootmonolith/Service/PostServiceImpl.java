@@ -1,7 +1,9 @@
 package com.example.springbootmonolith.Service;
 
 import com.example.springbootmonolith.Repository.PostRepository;
+import com.example.springbootmonolith.Repository.UserRepository;
 import com.example.springbootmonolith.model.Post;
+import com.example.springbootmonolith.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,14 +14,20 @@ public class PostServiceImpl implements PostService {
     @Autowired
     PostRepository postRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     /**
      *
-     * @param post
+     * @param newPost
      * @return saved post.
      */
     @Override
-    public Post createPost(Post post) {
-        return postRepository.save(post);
+    public Post createPost(Post newPost, String username) {
+        User user = userRepository.findByUsername(username);
+        newPost.setUser(user);
+
+        return postRepository.save(newPost);
     }
 
     /**

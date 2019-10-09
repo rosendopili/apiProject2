@@ -4,8 +4,6 @@ import com.example.springbootmonolith.Config.JwtUtil;
 import com.example.springbootmonolith.Repository.CommentRepository;
 import com.example.springbootmonolith.Repository.PostRepository;
 import com.example.springbootmonolith.Repository.UserRepository;
-import com.example.springbootmonolith.model.Comment;
-import com.example.springbootmonolith.model.Post;
 import com.example.springbootmonolith.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -75,36 +73,6 @@ public class UserServiceImpl implements UserService{
             System.out.println("Username already exists, please choose another.");
         }
         return null;
-    }
-
-    /**
-     *
-     * @param username
-     * @param postId
-     * @return
-     */
-    @Override
-    public User addPost(String username, long postId) {
-        Post post = postRepository.findById(postId).get();
-        User user = getUser(username);
-        user.addPost(post);
-
-        return userRepository.save(user);
-    }
-
-    /**
-     *
-     * @param username
-     * @param commentId
-     * @return
-     */
-    @Override
-    public User addComment(String username, long commentId) {
-        Comment comment = commentRepository.findById(commentId).get();
-        User user = getUser(username);
-        user.addComment(comment);
-
-        return userRepository.save(user);
     }
 
     /**

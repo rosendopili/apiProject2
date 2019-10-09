@@ -12,15 +12,15 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
-    @PostMapping("/comment")
-    public Comment createComment(@RequestBody Comment comment) {
-        return commentService.createComment(comment);
+    @PostMapping("/comment/{")
+    public Comment createComment(@RequestBody Comment newComment, long postId) {
+        return commentService.createComment(newComment, postId);
     }
 
     @GetMapping("/comment/list")
     public Iterable<Comment> listComments() { return commentService.listComments(); }
 
-    @DeleteMapping("/comment/delete")
+    @DeleteMapping("/comment/delete/{commentId}")
     public HttpStatus deleteComment(Long commentId) { return commentService.deleteComment(commentId); }
 
 }

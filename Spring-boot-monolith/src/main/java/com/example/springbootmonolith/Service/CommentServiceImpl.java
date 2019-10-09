@@ -1,7 +1,11 @@
 package com.example.springbootmonolith.Service;
 
 import com.example.springbootmonolith.Repository.CommentRepository;
+import com.example.springbootmonolith.Repository.PostRepository;
+import com.example.springbootmonolith.Repository.UserRepository;
 import com.example.springbootmonolith.model.Comment;
+import com.example.springbootmonolith.model.Post;
+import com.example.springbootmonolith.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,14 +17,20 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    PostRepository postRepository;
     /**
      *
-     * @param comment
-     * @return saved comment.
+     * @param newComment
+     * @param postId
+     * @return
      */
     @Override
-    public Comment createComment(Comment comment) {
-        return commentRepository.save(comment);
+    public Comment createComment(Comment newComment, Long postId) {
+        Post newPost = postRepository.findById(postId).get();
+        newComment.setPost(newPost);
+
+        return commentRepository.save(newComment);
     }
 
     /**

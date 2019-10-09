@@ -2,6 +2,7 @@ package com.example.springbootmonolith.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+    property ="id")
 @Entity
 @Table (name = "users")
 public class User {
@@ -19,7 +21,7 @@ public class User {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(unique = true)
     private String username;
@@ -41,13 +43,16 @@ public class User {
     /**
      * Post table references users table via user_id join column.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "user",
-    cascade = CascadeType.ALL)
+            cascade= {CascadeType.ALL})
     private List<Post> posts;
 
     /**
      * Comment table references users table via user_id join column.
      */
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL)
         private List<Comment> comments;
@@ -97,7 +102,7 @@ public class User {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

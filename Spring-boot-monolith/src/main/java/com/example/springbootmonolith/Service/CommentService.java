@@ -7,10 +7,11 @@ public interface CommentService {
 
     /**
      *
-     * @param comment
+     * @param newComment
+     * @param postId
      * @return
      */
-    public Comment createComment (Comment comment);
+    public Comment createComment (Comment newComment, Long postId);
 
     /**
      *

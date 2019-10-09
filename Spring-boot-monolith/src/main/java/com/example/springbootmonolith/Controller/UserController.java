@@ -3,6 +3,7 @@ package com.example.springbootmonolith.Controller;
 import com.example.springbootmonolith.Repository.UserRepository;
 import com.example.springbootmonolith.Service.UserService;
 import com.example.springbootmonolith.model.JwtResponse;
+import com.example.springbootmonolith.model.Post;
 import com.example.springbootmonolith.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,15 +34,6 @@ public class UserController {
         return ResponseEntity.ok(new JwtResponse(userService.createUser(newUser)));
     }
 
-    @PutMapping("/user/{username}/{postId}")
-    public User addPost(@PathVariable String username, @PathVariable long postId){
-        return userService.addPost(username, postId);
-    }
-
-    @PutMapping("/user/{username}/{commentId}")
-    public User addComment(@PathVariable String username, @PathVariable long commentId){
-        return userService.addComment(username, commentId);
-    }
 
     @DeleteMapping("/user/{userId}")
     public HttpStatus deleteUserById(@PathVariable Long userId) {
