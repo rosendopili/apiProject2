@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "userProfile")
 public class UserProfile {
+    /**
+     * setting userProfile datatable.
+     */
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +27,9 @@ public class UserProfile {
 //    private String profilePic;
 //    will determine whether or not to implement this functionality at a later date
 
+    /**
+     * userProfile is referenced by user table user_profile_id join column.
+     */
     @OneToOne (mappedBy = "userProfile",
             cascade = {CascadeType.ALL})
     private User user;

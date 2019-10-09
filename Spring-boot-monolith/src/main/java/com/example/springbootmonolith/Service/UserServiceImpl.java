@@ -24,14 +24,15 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    PostService postService;
-
+    /**
+     * Autowiring postRepository for addPost functionality
+     */
     @Autowired
     PostRepository postRepository;
+
+    /**
+     * Autowiring commentRepository for addComment functionality.
+     */
 
     @Autowired
     CommentRepository commentRepository;
@@ -39,6 +40,11 @@ public class UserServiceImpl implements UserService{
     @Autowired
     JwtUtil jwtUtil;
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     @Override
     public String login(User user){
         User newUser = userRepository.findByUsername(user.getUsername());
@@ -46,10 +52,17 @@ public class UserServiceImpl implements UserService{
             UserDetails userDetails = loadUserByUsername(newUser.getUsername());
 
             return jwtUtil.generateToken(userDetails);
+        }else{
+            System.out.println("Username or Password are incorrect. Please try again.");
         }
         return null;
     }
 
+    /**
+     *
+     * @param newUser
+     * @return
+     */
     @Override
     public String createUser(User newUser) {
         newUser.setUsername(newUser.getUsername());
@@ -58,9 +71,18 @@ public class UserServiceImpl implements UserService{
             UserDetails userDetails = loadUserByUsername(newUser.getUsername());
             return jwtUtil.generateToken(userDetails);
         }
+        else{
+            System.out.println("Username already exists, please choose another.");
+        }
         return null;
     }
 
+    /**
+     *
+     * @param username
+     * @param postId
+     * @return
+     */
     @Override
     public User addPost(String username, long postId) {
         Post post = postRepository.findById(postId).get();
@@ -70,6 +92,12 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
 
+    /**
+     *
+     * @param username
+     * @param commentId
+     * @return
+     */
     @Override
     public User addComment(String username, long commentId) {
         Comment comment = commentRepository.findById(commentId).get();
@@ -79,33 +107,57 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Iterable<User> listUsers() {
         return userRepository.findAll();
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     @Override
     public User getUser(String username) {
         return userRepository.findByUsername(username);
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     @Override
     public HttpStatus deleteById(Long userId) {
         userRepository.deleteById(userId);
         return HttpStatus.OK;
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException // functionality used for JWT header generation.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = getUser(username);
 
         if(user==null)
             throw new UsernameNotFoundException("User null");
-        // Code edited to not include bCrypt
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 true, true, true, true, getGrantedAuthorities(user));
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     private List<GrantedAuthority> getGrantedAuthorities(User user){
         List<GrantedAuthority> authorities = new ArrayList<>();
 

@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "comment")
 public class Comment {
+    /**
+     * Setting 'comment' datatable
+     */
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +20,9 @@ public class Comment {
     @Column
     private String body;
 
+    /**
+     * user_id references 'users' table.
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
