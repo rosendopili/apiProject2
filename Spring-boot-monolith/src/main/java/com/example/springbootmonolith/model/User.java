@@ -56,7 +56,6 @@ public class User {
     /**
      * Comment table references users table via user_id join column.
      */
-
     @JsonIgnore
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.MERGE)

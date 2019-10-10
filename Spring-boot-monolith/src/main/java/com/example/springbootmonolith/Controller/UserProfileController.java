@@ -12,6 +12,14 @@ public class UserProfileController {
     @Autowired
     private UserProfileService userProfileService;
 
+    /**
+     * For testing purposes
+     * @param userProfileService
+     */
+    public void setUserProfileService(UserProfileService userProfileService){
+        this.userProfileService = userProfileService;
+    }
+
 
     @GetMapping("/profile")
     public UserProfile getUserProfile(@PathVariable String username) {
