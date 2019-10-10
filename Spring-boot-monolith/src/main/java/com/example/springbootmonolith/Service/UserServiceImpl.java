@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     @Override
-    public HttpStatus deleteById(long userId) {
+    public HttpStatus deleteById(Long userId) {
         userRepository.deleteById(userId);
         return HttpStatus.OK;
     }

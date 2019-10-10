@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonIdentityInfo(
@@ -20,7 +21,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long id;
+    private Long id;
 
     @Column
     private String title;
@@ -34,7 +35,7 @@ public class Post {
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY,
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     /**
@@ -44,6 +45,14 @@ public class Post {
     @OneToMany(mappedBy = "post",
             cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    public List<Comment> addComment (Comment comment){
+        if (comments == null)
+            comments = new ArrayList<>();
+        comments.add(comment);
+
+        return comments;
+    }
 
 
     private Post(){}
@@ -56,11 +65,11 @@ public class Post {
 
     public void setUser(User user){this.user = user;}
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

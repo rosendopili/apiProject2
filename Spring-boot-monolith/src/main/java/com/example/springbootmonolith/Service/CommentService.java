@@ -11,7 +11,7 @@ public interface CommentService {
      * @param postId
      * @return
      */
-    public Comment createComment (Comment newComment, long postId);
+    public Comment createComment (Comment newComment, Long postId);
 
     /**
      *
@@ -24,5 +24,5 @@ public interface CommentService {
      * @param commentId
      * @return
      */
-    public HttpStatus deleteComment(long commentId);
+    public HttpStatus deleteComment(Long commentId);
 }

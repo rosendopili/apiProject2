@@ -40,5 +40,5 @@ public interface UserService extends UserDetailsService {
      * @param userId
      * @return
      */
-    public HttpStatus deleteById(long userId);
+    public HttpStatus deleteById(Long userId);
 }
