@@ -18,7 +18,7 @@ public class UserProfile {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column
     private String location;
@@ -36,8 +36,11 @@ public class UserProfile {
     /**
      * userProfile is referenced by user table user_profile_id join column.
      */
+    //CascadeType.MERGE allows for the columns to join.
+    // CascadeType.ALL creates functionality redundancies.
+    // Original error was "detached entity passed to persist."
     @OneToOne (mappedBy = "userProfile",
-            cascade = {CascadeType.ALL})
+            cascade = CascadeType.MERGE)
     private User user;
 
     public UserProfile() {}
@@ -50,7 +53,7 @@ public class UserProfile {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -17,7 +17,7 @@ public class Comment {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column
     private String title;
@@ -33,6 +33,9 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * comment table references post_id join column.
+     */
     @ManyToOne(cascade = {CascadeType.DETACH,
             CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "post_id")
@@ -52,7 +55,7 @@ public class Comment {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

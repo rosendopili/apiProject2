@@ -20,7 +20,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long id;
+    private long id;
 
     @Column
     private String title;
@@ -31,11 +31,16 @@ public class Post {
     /**
      * user_id references 'users' table.
      */
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY,
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * post_id references comment table.
+     */
+    @JsonIgnore
     @OneToMany(mappedBy = "post",
             cascade = CascadeType.ALL)
     private List<Comment> comments;
@@ -55,7 +60,7 @@ public class Post {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

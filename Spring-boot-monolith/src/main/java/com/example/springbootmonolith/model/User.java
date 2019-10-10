@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +22,10 @@ public class User {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @Column(unique = true)
+    @Column(unique = true,
+            nullable = false)
     private String username;
 
     @Column(unique = true)
@@ -36,7 +38,10 @@ public class User {
     /**
      * user_profile_id references UserProfile datatable.
      */
-    @OneToOne (cascade = CascadeType.ALL)
+    //CascadeType.MERGE allows for the columns to join.
+    // CascadeType.ALL creates functionality redundancies.
+    // Original error was "detached entity passed to persist."
+    @OneToOne (cascade = CascadeType.MERGE)
     @JoinColumn (name = "user_profile_id")
     private UserProfile userProfile;
 
@@ -102,7 +107,7 @@ public class User {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -26,7 +26,7 @@ public class CommentServiceImpl implements CommentService {
      * @return
      */
     @Override
-    public Comment createComment(Comment newComment, Long postId) {
+    public Comment createComment(Comment newComment, long postId) {
         Post newPost = postRepository.findById(postId).get();
         newComment.setPost(newPost);
 
@@ -48,7 +48,7 @@ public class CommentServiceImpl implements CommentService {
      * @return httpStatus OK if comment delete successful.
      */
     @Override
-    public HttpStatus deleteComment(Long commentId){
+    public HttpStatus deleteComment(long commentId){
         commentRepository.deleteById(commentId);
 
         return HttpStatus.OK;
