@@ -46,10 +46,15 @@ public class PostServiceImpl implements PostService {
      */
     @Override
     //consider returning as void//
-    public HttpStatus deletePost(Long postId) {
+    public HttpStatus deletePost(long postId) {
         postRepository.deleteById(postId);
         return HttpStatus.OK;
     }
+
+//    @Override
+//    public Iterable<Post> listPostsByUserId(long userId){
+//        Iterable<Post> newList = postRepository.findAllById(userId).get();
+//    }
 
 }
 

@@ -12,12 +12,12 @@ public class PostController {
     @Autowired
     public PostService postService;
 
-    @PostMapping("/post")
+    @PostMapping("/post/{username}")
     public Post createPost(@RequestBody Post newPost, @PathVariable String username) {
         return postService.createPost(newPost, username);
     }
 
-    @GetMapping("post/list")
+    @GetMapping("post/all/list")
     public Iterable<Post> listPosts() {
         return postService.listPosts();
     }

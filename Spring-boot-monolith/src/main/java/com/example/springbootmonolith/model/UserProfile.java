@@ -10,7 +10,7 @@ import javax.persistence.*;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 @Entity
-@Table(name = "userProfile")
+@Table(name = "user_profile")
 public class UserProfile {
     /**
      * setting userProfile datatable.
@@ -18,7 +18,7 @@ public class UserProfile {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column
     private String location;
@@ -36,8 +36,13 @@ public class UserProfile {
     /**
      * userProfile is referenced by user table user_profile_id join column.
      */
-    @OneToOne (mappedBy = "userProfile",
-            cascade = {CascadeType.ALL})
+    //CascadeType.MERGE allows for the columns to join.
+    // CascadeType.ALL creates functionality redundancies.
+    // Original error was "detached entity passed to persist."
+    @OneToOne (
+            cascade = CascadeType.MERGE)
+    @JoinColumn (name = "user_id",
+                nullable = false)
     private User user;
 
     public UserProfile() {}
@@ -50,7 +55,7 @@ public class UserProfile {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -23,5 +23,12 @@ public interface PostService {
      * @param postId
      * @return
      */
-    public HttpStatus deletePost(Long postId);
+    public HttpStatus deletePost(long postId);
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+//    public Iterable<Post> listPostsByUserId(long userId);
 }
