@@ -22,7 +22,7 @@ public class User {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(unique = true,
             nullable = false)
@@ -103,11 +103,11 @@ public class User {
 
     public void setUserProfile(UserProfile userProfile){this.userProfile = userProfile;}
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
