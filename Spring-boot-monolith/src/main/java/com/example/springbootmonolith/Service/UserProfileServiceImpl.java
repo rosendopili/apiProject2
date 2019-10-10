@@ -4,6 +4,7 @@ import com.example.springbootmonolith.Repository.UserProfileRepository;
 import com.example.springbootmonolith.model.User;
 import com.example.springbootmonolith.model.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,8 +26,11 @@ public class UserProfileServiceImpl implements UserProfileService {
     public UserProfile createUserProfile(String username, UserProfile newProfile) {
         User user = userService.getUser(username);
         newProfile.setUser(user);
-
-        return userProfileRepository.save(newProfile);
+        if (user != null){
+            return userProfileRepository.save(newProfile);
+        }else {
+            System.out.println("You must be logged in to update your profile.");
+        }return null;
     }
 
     /**

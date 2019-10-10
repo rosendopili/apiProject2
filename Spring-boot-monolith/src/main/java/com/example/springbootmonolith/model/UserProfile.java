@@ -10,7 +10,7 @@ import javax.persistence.*;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 @Entity
-@Table(name = "userProfile")
+@Table(name = "user_profile")
 public class UserProfile {
     /**
      * setting userProfile datatable.
@@ -39,8 +39,10 @@ public class UserProfile {
     //CascadeType.MERGE allows for the columns to join.
     // CascadeType.ALL creates functionality redundancies.
     // Original error was "detached entity passed to persist."
-    @OneToOne (mappedBy = "userProfile",
+    @OneToOne (
             cascade = CascadeType.MERGE)
+    @JoinColumn (name = "user_id",
+                nullable = false)
     private User user;
 
     public UserProfile() {}
