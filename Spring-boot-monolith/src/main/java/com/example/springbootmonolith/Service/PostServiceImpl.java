@@ -51,5 +51,10 @@ public class PostServiceImpl implements PostService {
         return HttpStatus.OK;
     }
 
+//    @Override
+//    public Iterable<Post> listPostsByUserId(long userId){
+//        Iterable<Post> newList = postRepository.findAllById(userId).get();
+//    }
+
 }
 
