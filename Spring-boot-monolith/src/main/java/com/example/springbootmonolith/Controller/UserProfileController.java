@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/{username}")
 public class UserProfileController {
 
     @Autowired
     private UserProfileService userProfileService;
 
 
-    @GetMapping("/{username}")
+    @GetMapping("/profile")
     public UserProfile getUserProfile(@PathVariable String username) {
         return userProfileService.getUserProfile(username);
     }
 
-    @PostMapping("/{username}")
+    @PostMapping("/profile")
     public  UserProfile createUserProfile(@PathVariable String username, @RequestBody UserProfile newProfile) {
         return userProfileService.createUserProfile(username, newProfile);
     }

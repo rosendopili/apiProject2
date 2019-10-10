@@ -59,7 +59,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.MERGE)
         private List<Comment> comments;
 
     public User() {
