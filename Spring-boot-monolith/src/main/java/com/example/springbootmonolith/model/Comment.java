@@ -29,9 +29,8 @@ public class Comment {
     /**
      * user_id references 'users' table.
      */
-    @ManyToOne(fetch=FetchType.LAZY,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     /**

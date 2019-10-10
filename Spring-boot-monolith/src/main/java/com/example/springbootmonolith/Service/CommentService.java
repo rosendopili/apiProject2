@@ -1,6 +1,7 @@
 package com.example.springbootmonolith.Service;
 
 import com.example.springbootmonolith.model.Comment;
+import com.example.springbootmonolith.model.User;
 import org.springframework.http.HttpStatus;
 
 public interface CommentService {
