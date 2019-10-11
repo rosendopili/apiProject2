@@ -26,6 +26,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     public UserProfile createUserProfile(String username, UserProfile newProfile) throws Exception {
         User user = userService.getUser(username);
         newProfile.setUser(user);
+        user.setUserProfile(newProfile);
         if (user != null){
             return userProfileRepository.save(newProfile);
         }else {
