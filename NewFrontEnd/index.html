@@ -50,15 +50,17 @@
                     <button
                     type="submit"
                     id="LOGIN"
+                    onclick="logIn(event)"
                     >LOG IN
                     </button>
 
                     <button
                     type="submit"
                     id="SIGNUP"
+                    onclick="signUp(event)"
                     >SIGN UP
                     </button>
-                    
+
             </form>
         </div>
 <div class="content-wrapper">
@@ -112,10 +114,12 @@
                   <label for="mobile" class="profile-forms"> <b>MOBILE</b> </label>
 ​                       <input
                         type="text"
-                        placeholder="MOBILE">
+                        placeholder="MOBILE"
+                        class="mobile">
                 <button
                 type="submit"
                 id="profilesubmit"
+                onclick="profile(event)"
                 > SUBMIT </button>
             </form>
 
