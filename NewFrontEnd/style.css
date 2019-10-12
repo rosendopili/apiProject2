@@ -107,10 +107,16 @@ footer {
   position: fixed;
   width: 100%;
 }
+
 .footer {
   background-color: rgba(229, 229, 229, 0.5);
   height: 35px;
   width: 100%;
   text-align: center;
+}
 
+img {
+  height: 120px;
+  width: auto;
+  overflow: hidden;
 }
