@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*LOGIN FUNCTIONALITY*/
 function logIn(event) {
 
@@ -97,3 +98,5 @@ function profile(event) {
         console.log(err);
     })
 }
+=======
+>>>>>>> 8c0ff7108f84b590bfd71ee02a79e503920662eb
