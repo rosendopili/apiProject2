@@ -23,8 +23,20 @@ function logIn(event) {
     .then((res) => {
         localStorage.setItem('user', res.token);
     })
-    .catch((err) => {
-        console.log(err);
+      .then((res) => {
+    createPost();
+    })
+      .then((res)=>{
+    deletePost();
+    })
+    .then((res)=>{
+    profile();
+    })
+    .then((res)=>{
+    console.log(res.token);
+    })
+      .catch((err) => {
+    console.log(err);
     })
 }
 
@@ -52,7 +64,7 @@ function signUp(event) {
         return res.json();
     })
     .then((res) => {
-        localStorage.setItem('user', res.token);
+        localStorage.setItem('user', + res.token);
     })
     .catch((err) => {
         console.log(err);
@@ -60,7 +72,7 @@ function signUp(event) {
 }
 
 function profile(event) {
-
+    document.querySelector('.profileForm').style.display = "none"
     event.preventDefault();
     const bio = document.querySelector('.bio');
     const location = document.querySelector('.location');
@@ -69,7 +81,8 @@ function profile(event) {
     fetch('http://localhost:8080/profile/{username}', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+              "Authorization": "Bearer " + localStorage.getItem('user'),
+              "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 bio: bio.value,
@@ -78,7 +91,7 @@ function profile(event) {
             })
     })
     .then((res) => {
-        localStorage.setItem('user');
+    return res.json();
     })
     .catch((err) => {
         console.log(err);
