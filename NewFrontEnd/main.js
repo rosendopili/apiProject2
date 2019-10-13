@@ -71,6 +71,8 @@ function signUp(event) {
     })
 }
 
+//ADDING PROFILE UPDATE FUNCTIONALITY//
+
 function profile(event) {
     document.querySelector('.userContainer').style.display = "none";
     event.preventDefault();
@@ -125,35 +127,34 @@ function createPost(event) {
     })
 }
 
-createPost(); //calling function to initiate createPost//
+//UPDATING DOM TO CREATE CONTENT WALL//
 
 function updateDom() {
   document.querySelector('.allPosts').style.display = "block";
   document.querySelector('.allPosts');
+
           for (let i = 0; i < res.length; i++) {
 
             const item = document.createElement('li');
             const title = document.createElement('h3');
-            const description = document.createElement('p');
+            const body = document.createElement('p');
             const commentInput =
             document.createElement('input');
             const buttonDelete = document.createElement('input');
 
-
             item.appendChild(title);
-            item.appendChild(description);
+            item.appendChild(body);
             //added comment button to the array//
             commentInput.appendChild(item);
             //added delete button to the array//
             buttonDelete.appendChild(item);
 
-
             title.innerText = res[i].title;
-            description.innerText = res[i].description;
+            body.innerText = res[i].body;
+
             list.appendChild(item);
             list.appendChild(commentInput);
             list.appendChild(buttonDelete);
-
 
             commentInput.setAttribute("class", "comment");
             commentInput.setAttribute("type", "submit");
@@ -167,14 +168,8 @@ function updateDom() {
 
             description.setAttribute("class", "wallPost");
           }
-        })
 
-    .catch((err) => {
-        console.log(err);
-    })
 }
-
-updateDom(); //calling function to initiate updateDom//
 
 
 //ADDING LIST POSTS FUNCTIONALITY//
@@ -190,49 +185,9 @@ function listAllPosts(event) {
     .then((res) => {
         return res.json();
     })
-
     .then((res) => {
-        const list = document.querySelector('.allPosts');
-
-          for (let i = 0; i < res.length; i++) {
-
-            const item = document.createElement('li');
-            const title = document.createElement('h3');
-            const description = document.createElement('p');
-            const commentInput =
-            document.createElement('input');
-            const buttonDelete = document.createElement('input');
-
-
-            item.appendChild(title);
-            item.appendChild(description);
-            //added comment button to the array//
-            commentInput.appendChild(item);
-            //added delete button to the array//
-            buttonDelete.appendChild(item);
-
-
-            title.innerText = res[i].title;
-            description.innerText = res[i].description;
-            list.appendChild(item);
-            list.appendChild(commentInput);
-            list.appendChild(buttonDelete);
-
-
-            commentInput.setAttribute("class", "comment");
-            commentInput.setAttribute("type", "submit");
-            commentInput.setAttribute("value", "comment");
-            commentInput.setAttribute("onclick", "createComment(event)");
-
-            buttonDelete.setAttribute("class", "deletePost");
-            buttonDelete.setAttribute("type", "submit");
-            buttonDelete.setAttribute("value", "deletePost");
-            buttonDelete.setAttribute("onclick", "deletePost(event)")
-
-            description.setAttribute("class", "wallPost");
-          }
-        })
-
+        updateDom();
+    })
     .catch((err) => {
         console.log(err);
     })
@@ -267,6 +222,8 @@ function createComment(event) {
           const commentBody = document.createElement('p');
           const commentDelete = document.createElement('input');
 
+          commentTitle.innerText = res[i].commentTitle;
+          commentBody.innerText = res[i].commentBody;
           commentItem.appendChild(commentTitle);
           commentItem.appendChild(commentBody);
 
@@ -280,6 +237,8 @@ function createComment(event) {
             console.log(err);
       })
     }
+
+//DELETE POST FUNCTIONALITY//
 
 function deletePost(event) {
   event.preventDefault();
@@ -304,7 +263,7 @@ function deletePost(event) {
       })
 }
 
-deletePost(); //calling function//
+//DELETE COMMENT FUNCTIONALITY//
 
 function deleteComment(event) {
   event.preventDefault();
@@ -327,5 +286,3 @@ function deleteComment(event) {
       .then((res) => {
       })
 }
-
-deleteComment(); //calling function//
