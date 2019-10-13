@@ -124,3 +124,208 @@ function createPost(event) {
         console.log(err);
     })
 }
+
+createPost(); //calling function to initiate createPost//
+
+function updateDom() {
+  document.querySelector('.allPosts').style.display = "block";
+  document.querySelector('.allPosts');
+          for (let i = 0; i < res.length; i++) {
+
+            const item = document.createElement('li');
+            const title = document.createElement('h3');
+            const description = document.createElement('p');
+            const commentInput =
+            document.createElement('input');
+            const buttonDelete = document.createElement('input');
+
+
+            item.appendChild(title);
+            item.appendChild(description);
+            //added comment button to the array//
+            commentInput.appendChild(item);
+            //added delete button to the array//
+            buttonDelete.appendChild(item);
+
+
+            title.innerText = res[i].title;
+            description.innerText = res[i].description;
+            list.appendChild(item);
+            list.appendChild(commentInput);
+            list.appendChild(buttonDelete);
+
+
+            commentInput.setAttribute("class", "comment");
+            commentInput.setAttribute("type", "submit");
+            commentInput.setAttribute("value", "comment");
+            commentInput.setAttribute("onclick", "createComment(event)");
+
+            buttonDelete.setAttribute("class", "delete");
+            buttonDelete.setAttribute("type", "submit");
+            buttonDelete.setAttribute("value", "delete");
+            buttonDelete.setAttribute("onclick", "deletePost(event)");
+
+            description.setAttribute("class", "wallPost");
+          }
+        })
+
+    .catch((err) => {
+        console.log(err);
+    })
+}
+
+updateDom(); //calling function to initiate updateDom//
+
+
+//ADDING LIST POSTS FUNCTIONALITY//
+function listAllPosts(event) {
+    const posts = document.querySelector('.allPosts');
+
+    fetch("http://localhost/{username}/post/list", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+    })
+    .then((res) => {
+        return res.json();
+    })
+
+    .then((res) => {
+        const list = document.querySelector('.allPosts');
+
+          for (let i = 0; i < res.length; i++) {
+
+            const item = document.createElement('li');
+            const title = document.createElement('h3');
+            const description = document.createElement('p');
+            const commentInput =
+            document.createElement('input');
+            const buttonDelete = document.createElement('input');
+
+
+            item.appendChild(title);
+            item.appendChild(description);
+            //added comment button to the array//
+            commentInput.appendChild(item);
+            //added delete button to the array//
+            buttonDelete.appendChild(item);
+
+
+            title.innerText = res[i].title;
+            description.innerText = res[i].description;
+            list.appendChild(item);
+            list.appendChild(commentInput);
+            list.appendChild(buttonDelete);
+
+
+            commentInput.setAttribute("class", "comment");
+            commentInput.setAttribute("type", "submit");
+            commentInput.setAttribute("value", "comment");
+            commentInput.setAttribute("onclick", "createComment(event)");
+
+            buttonDelete.setAttribute("class", "deletePost");
+            buttonDelete.setAttribute("type", "submit");
+            buttonDelete.setAttribute("value", "deletePost");
+            buttonDelete.setAttribute("onclick", "deletePost(event)")
+
+            description.setAttribute("class", "wallPost");
+          }
+        })
+
+    .catch((err) => {
+        console.log(err);
+    })
+}
+
+listAllPosts(); //calling function to initiate listAllPosts//
+
+
+//CREATE COMMENT FUNCTIONALITY//
+function createComment(event) {
+  event.preventDefault();
+  fetch("http://localhost:8080/{username}/{postId}/comment", {
+      method: 'POST',
+      headers: {
+          "Authorization": "Bearer " + localStorage.getItem('user'),
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+          title: title.value,
+          body: body.value
+      })
+  })
+  .then((res) => {
+      console.log(res);
+  })
+    .then((res) => {
+        const commentList =
+        document.querySelector('.comment');
+        for (let i = 0; i < res.length; i++) {
+          const commentItem = document.createElement('div');
+          const commentTitle = document.createElement('h3');
+          const commentBody = document.createElement('p');
+          const commentDelete = document.createElement('input');
+
+          commentItem.appendChild(commentTitle);
+          commentItem.appendChild(commentBody);
+
+          commentDelete.setAttribute("class", "delete");
+          commentDelete.setAttribute("type", "submit");
+          commentDelete.setAttribute("value", "deleteComment");
+          commentDelete.setAttribute("onclick", "deleteComment(event)");
+        }
+      })
+        .catch((err) => {
+            console.log(err);
+      })
+    }
+
+function deletePost(event) {
+  event.preventDefault();
+  document.querySelector(".deletePost");
+
+  fetch('http://localhost:8080/{username}/post/delete/{postId}', {
+      method: "DELETE",
+      headers: {
+          "Authorization": "Bearer" +
+          localStorage.getItem('user'),
+          "Content-Type": "application/json"
+        },
+      })
+      .then((res) => {
+          console.log(res);
+      })
+      .catch((err) => {
+          console.log(err);
+      })
+      .then((res) => {
+
+      })
+}
+
+deletePost(); //calling function//
+
+function deleteComment(event) {
+  event.preventDefault();
+  document.querySelector(".deleteComment");
+
+  fetch('http://localhost:8080/{username}/comment/delete/{commentId}', {
+      method: "DELETE",
+      headers: {
+          "Authorization": "Bearer" +
+          localStorage.getItem('user'),
+          "Content-Type": "application/json"
+        },
+      })
+      .then((res) => {
+          console.log(res);
+      })
+      .catch((err) => {
+          console.log(err);
+      })
+      .then((res) => {
+      })
+}
+
+deleteComment(); //calling function//
