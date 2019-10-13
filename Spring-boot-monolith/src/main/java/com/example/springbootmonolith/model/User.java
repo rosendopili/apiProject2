@@ -62,7 +62,8 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user",
             cascade = {CascadeType.MERGE, CascadeType.REFRESH,CascadeType.REMOVE})
-        private List<Comment> comments;
+    private List<Comment> comments;
+
 
     public User() {
     }

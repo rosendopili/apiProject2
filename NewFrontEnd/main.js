@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 /*LOGIN FUNCTIONALITY*/
 function logIn(event) {
-
+  document.querySelector('.signupBar').style.display = "none";
     event.preventDefault();
     const email = document.querySelector('.email');
     const password = document.querySelector('.pw');
@@ -44,7 +43,7 @@ function logIn(event) {
 /*SIGNUP functionality*/
 
 function signUp(event) {
-
+  document.querySelector('.signupBar').style.display = "none";
     event.preventDefault();
     const email = document.querySelector('.email');
     const password = document.querySelector('.pw');
@@ -73,7 +72,7 @@ function signUp(event) {
 }
 
 function profile(event) {
-    document.querySelector('.profileForm').style.display = "none"
+    document.querySelector('.userContainer').style.display = "none";
     event.preventDefault();
     const bio = document.querySelector('.bio');
     const location = document.querySelector('.location');
@@ -98,5 +97,30 @@ function profile(event) {
         console.log(err);
     })
 }
-=======
->>>>>>> 8c0ff7108f84b590bfd71ee02a79e503920662eb
+
+//CREATE A POST FUNCTIONALITY//
+
+function createPost(event) {
+    event.preventDefault();
+    const title = document.querySelector('.title');
+    const body = document.querySelector('.body');
+
+    fetch("http://localhost:8080/{username}/post", {
+        method: 'POST',
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem('user'),
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: title.value,
+            body: body.value
+        })
+    })
+    .then((res) => {
+        console.log(res);
+        updateDom(res);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}
