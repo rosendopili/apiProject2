@@ -26,13 +26,19 @@ function logIn(event) {
       .then((res) => {
     createPost();
     })
+      .then((res) => {
+    createComment();
+    })
       .then((res)=>{
     deletePost();
     })
-    .then((res)=>{
+      .then((res)=>{
+    deleteComment();
+    })
+      .then((res)=>{
     profile();
     })
-    .then((res)=>{
+      .then((res)=>{
     console.log(res.token);
     })
       .catch((err) => {
@@ -74,8 +80,8 @@ function signUp(event) {
 //ADDING PROFILE UPDATE FUNCTIONALITY//
 
 function profile(event) {
-    document.querySelector('.userContainer').style.display = "none";
     event.preventDefault();
+    document.querySelector('.userContainer').style.display = "none";
     const bio = document.querySelector('.bio');
     const location = document.querySelector('.location');
     const mobile = document.querySelector('.mobile');
@@ -100,12 +106,11 @@ function profile(event) {
     })
 }
 
-//UPDATING DOM TO CREATE CONTENT WALL//
+//listAllPosts will populate post Wall.//
 
-function updateDom() {
+function listAllPosts(event) {
 
   document.querySelector('.allPosts').style.display = "block";
-
   fetch("http://localhost:8080/{username}/post/list", {
           method: "GET",
           headers: {
@@ -151,11 +156,11 @@ function updateDom() {
             buttonDelete.setAttribute("value", "delete");
             buttonDelete.setAttribute("onclick", "deletePost(event)");
 
-            description.setAttribute("class", "wallPost");
+            item.setAttribute("class", "userPost");
           }
   })
 }
-updateDom();
+listAllPosts();
 
 //CREATE A POST FUNCTIONALITY//
 
@@ -176,42 +181,18 @@ function createPost(event) {
         })
     })
     .then((res) => {
-        console.log(res);
-        updateDom();
+        return res.json();
     })
     .catch((err) => {
         console.log(err);
     })
 }
 
-//ADDING LIST POSTS FUNCTIONALITY//
-// function listAllPosts(event) {
-//     const posts = document.querySelector('.allPosts');
-//
-//     fetch("http://localhost:8080/{username}/post/list", {
-//             method: "GET",
-//             headers: {
-//               "Authorization": "Bearer " + localStorage.getItem('user'),
-//               "Content-Type": "application/json"
-//             },
-//     })
-//     .then((res) => {
-//         return res.json();
-//     })
-//     .then((res) => {
-//       console.log(res);
-//         updateDom();
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     })
-// }
-//
-// listAllPosts(); //calling function to initiate listAllPosts//
-
 
 //CREATE COMMENT FUNCTIONALITY//
 function createComment(event) {
+  document.querySelector(".comment");
+  document.querySelector(".userPost").style.display = "block";
   event.preventDefault();
   fetch("http://localhost:8080/{username}/{postId}/comment", {
       method: 'POST',
@@ -225,21 +206,28 @@ function createComment(event) {
       })
   })
   .then((res) => {
-      console.log(res);
+      return res.json();
   })
     .then((res) => {
         const commentList =
-        document.querySelector('.comment');
+        document.querySelector('.commentInput');
         for (let i = 0; i < res.length; i++) {
-          const commentItem = document.createElement('div');
+          const commentContainer = document.createElement('ul');
+          const commentItem = document.createElement('li');
           const commentTitle = document.createElement('h3');
           const commentBody = document.createElement('p');
           const commentDelete = document.createElement('input');
 
           commentTitle.innerText = res[i].commentTitle;
           commentBody.innerText = res[i].commentBody;
+          commentContainer.appendChild(commentItem);
           commentItem.appendChild(commentTitle);
           commentItem.appendChild(commentBody);
+
+          commentContainer.setAttribute("class", "commentContainer");
+          commentItem.setAttribute("class", "commmentItem");
+          commentTitle.setAttribute("class", "commentTitle");
+          commentBody.setAttribute("class", "commentBody");
 
           commentDelete.setAttribute("class", "delete");
           commentDelete.setAttribute("type", "submit");
@@ -256,8 +244,8 @@ function createComment(event) {
 
 function deletePost(event) {
   event.preventDefault();
-  document.querySelector(".deletePost");
-
+  document.querySelector(".delete");
+  document.querySelector('.userPost').style.display = "none";
   fetch('http://localhost:8080/{username}/post/delete/{postId}', {
       method: "DELETE",
       headers: {
