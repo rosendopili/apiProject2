@@ -100,39 +100,24 @@ function profile(event) {
     })
 }
 
-//CREATE A POST FUNCTIONALITY//
-
-function createPost(event) {
-    event.preventDefault();
-    const title = document.querySelector('.title');
-    const body = document.querySelector('.body');
-
-    fetch("http://localhost:8080/{username}/post", {
-        method: 'POST',
-        headers: {
-            "Authorization": "Bearer " + localStorage.getItem('user'),
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            title: title.value,
-            body: body.value
-        })
-    })
-    .then((res) => {
-        console.log(res);
-        updateDom(res);
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-}
-
 //UPDATING DOM TO CREATE CONTENT WALL//
 
 function updateDom() {
-  document.querySelector('.allPosts').style.display = "block";
-  document.querySelector('.allPosts');
 
+  document.querySelector('.allPosts').style.display = "block";
+
+  fetch("http://localhost:8080/{username}/post/list", {
+          method: "GET",
+          headers: {
+                "Authorization": "Bearer " + localStorage.getItem('user'),
+                "Content-Type": "application/json"
+            }
+        })
+        .then((res) => {
+            return res.json();
+        })
+        .then((res) =>{
+          const list = document.querySelector('.allPosts');
           for (let i = 0; i < res.length; i++) {
 
             const item = document.createElement('li');
@@ -168,24 +153,30 @@ function updateDom() {
 
             description.setAttribute("class", "wallPost");
           }
-
+  })
 }
+updateDom();
 
+//CREATE A POST FUNCTIONALITY//
 
-//ADDING LIST POSTS FUNCTIONALITY//
-function listAllPosts(event) {
-    const posts = document.querySelector('.allPosts');
+function createPost(event) {
+    event.preventDefault();
+    const title = document.querySelector('.title');
+    const body = document.querySelector('.body');
 
-    fetch("http://localhost/{username}/post/list", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
+    fetch("http://localhost:8080/{username}/post", {
+        method: 'POST',
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem('user'),
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: title.value,
+            body: body.value
+        })
     })
     .then((res) => {
-        return res.json();
-    })
-    .then((res) => {
+        console.log(res);
         updateDom();
     })
     .catch((err) => {
@@ -193,7 +184,30 @@ function listAllPosts(event) {
     })
 }
 
-listAllPosts(); //calling function to initiate listAllPosts//
+//ADDING LIST POSTS FUNCTIONALITY//
+// function listAllPosts(event) {
+//     const posts = document.querySelector('.allPosts');
+//
+//     fetch("http://localhost:8080/{username}/post/list", {
+//             method: "GET",
+//             headers: {
+//               "Authorization": "Bearer " + localStorage.getItem('user'),
+//               "Content-Type": "application/json"
+//             },
+//     })
+//     .then((res) => {
+//         return res.json();
+//     })
+//     .then((res) => {
+//       console.log(res);
+//         updateDom();
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     })
+// }
+//
+// listAllPosts(); //calling function to initiate listAllPosts//
 
 
 //CREATE COMMENT FUNCTIONALITY//
