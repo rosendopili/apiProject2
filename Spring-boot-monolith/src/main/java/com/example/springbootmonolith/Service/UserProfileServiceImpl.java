@@ -35,13 +35,15 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     /**
-     *
+     * Method continues to return user ID as null.  database reflects user ID in user profile table.
      * @param username
      * @return
      */
     @Override
-    public UserProfile getUserProfile(String username) {
-        return userProfileRepository.findProfileByUsername(username);
+    public UserProfile getUserProfile(Long userId, String username) {
+        User user = userService.getUser(username);
+
+        return userProfileRepository.findById(userId).get();
     }
 }
 

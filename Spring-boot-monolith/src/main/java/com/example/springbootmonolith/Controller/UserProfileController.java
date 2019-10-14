@@ -23,8 +23,8 @@ public class UserProfileController {
 
 
     @GetMapping("/{username}")
-    public UserProfile getUserProfile(@PathVariable String username) {
-            return userProfileService.getUserProfile(username);
+    public UserProfile getUserProfile(@PathVariable String username, Long userId) {
+            return userProfileService.getUserProfile(userId, username);
     }
 
     @PostMapping("/{username}")

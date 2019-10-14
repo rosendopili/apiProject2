@@ -159,3 +159,57 @@ footer {
   width: 100%;
   text-align: center;
 }
+
+img {
+  height: 120px;
+  width: auto;
+  overflow: hidden;
+}
+
+.allPosts {
+  margin: 10px auto;
+display: grid;
+height: 700px;
+width: 80%;
+overflow-y: scroll;
+border: 3px solid #9EA3A0;
+background-color: white;
+border: none;
+box-shadow: 0px 20px 30px #393985;
+margin-bottom: 100px;
+}
+
+.commentContainer {
+  box-shadow: 0px 20px 30px #393985;
+  width: 80%;
+  margin: 10px auto;
+  display: grid;
+  height: 50px;
+}
+
+img {
+  height: 120px;
+  width: auto;
+  overflow: hidden;
+}
+
+.allPosts {
+  margin: 10px auto;
+display: grid;
+height: 700px;
+width: 80%;
+overflow-y: scroll;
+border: 3px solid #9EA3A0;
+background-color: white;
+border: none;
+box-shadow: 0px 20px 30px #393985;
+margin-bottom: 100px;
+}
+
+.commentContainer {
+  box-shadow: 0px 20px 30px #393985;
+  width: 80%;
+  margin: 10px auto;
+  display: grid;
+  height: 50px;
+}

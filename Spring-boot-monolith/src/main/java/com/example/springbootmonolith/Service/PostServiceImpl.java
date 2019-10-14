@@ -28,7 +28,6 @@ public class PostServiceImpl implements PostService {
     public Post createPost(Post newPost, String username) {
          User user = userRepository.findByUsername(username);
          newPost.setUser(user);
-         user.addPost(newPost);
 
          return postRepository.save(newPost);
 
