@@ -134,10 +134,6 @@ function listAllPosts(event) {
 
             item.appendChild(title);
             item.appendChild(body);
-            //added comment button to the array//
-            commentInput.appendChild(item);
-            //added delete button to the array//
-            buttonDelete.appendChild(item);
 
             title.innerText = res[i].title;
             body.innerText = res[i].body;
@@ -183,6 +179,10 @@ function createPost(event) {
     .then((res) => {
         return res.json();
     })
+    .then((res) => {
+        return console.log(res);
+        listAllPosts(res);
+    })
     .catch((err) => {
         console.log(err);
     })
@@ -191,7 +191,7 @@ function createPost(event) {
 
 //CREATE COMMENT FUNCTIONALITY//
 function createComment(event) {
-  document.querySelector(".comment");
+  document.querySelector(".commentInput");
   document.querySelector(".userPost").style.display = "block";
   event.preventDefault();
   fetch("http://localhost:8080/{username}/{postId}/comment", {
@@ -208,9 +208,13 @@ function createComment(event) {
   .then((res) => {
       return res.json();
   })
+  .then((res) => {
+      console.log(res);
+      listAllPosts(res);
+  })
     .then((res) => {
         const commentList =
-        document.querySelector('.commentInput');
+        document.querySelector('.comment');
         for (let i = 0; i < res.length; i++) {
           const commentContainer = document.createElement('ul');
           const commentItem = document.createElement('li');
@@ -245,7 +249,7 @@ function createComment(event) {
 function deletePost(event) {
   event.preventDefault();
   document.querySelector(".delete");
-  document.querySelector('.userPost').style.display = "none";
+  document.querySelector('.userPost', '.buttonDelete', 'commentInput').style.display = "none";
   fetch('http://localhost:8080/{username}/post/delete/{postId}', {
       method: "DELETE",
       headers: {
