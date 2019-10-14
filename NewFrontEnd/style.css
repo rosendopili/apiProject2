@@ -73,6 +73,11 @@ button:hover {
   background-color: #bd8034;
 }
 
+li {
+  text-align: center;
+  align-self: center;
+}
+
 .signupBar {
   background: rgba(183, 183, 183, 0.5);
   width: 100%;
