@@ -40,7 +40,7 @@ public class UserProfile {
     // CascadeType.ALL creates functionality redundancies.
     // Original error was "detached entity passed to persist."
     @OneToOne (fetch = FetchType.LAZY)
-    @JoinColumn (name = "user_id")
+    @JoinColumn (name = "user_id", unique = true)
     private User user;
 
     public UserProfile() {}
