@@ -17,7 +17,7 @@ public interface UserProfileService {
      * @param userId, username
      * @return
      */
-    public UserProfile getUserProfile(Long userId, String username);
+    public UserProfile getUserProfile(String username);
 
 
 }

@@ -16,7 +16,7 @@ public class UserProfileServiceStub implements UserProfileService {
     }
 
     @Override
-    public UserProfile getUserProfile(Long userId, String username) {
+    public UserProfile getUserProfile(String username) {
         return null;
     }
 

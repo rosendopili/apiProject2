@@ -40,10 +40,8 @@ public class UserProfileServiceImpl implements UserProfileService {
      * @return
      */
     @Override
-    public UserProfile getUserProfile(Long userId, String username) {
-        User user = userService.getUser(username);
-
-        return userProfileRepository.findById(userId).get();
+    public UserProfile getUserProfile(String username) {
+        return userProfileRepository.findProfileByUsername(username);
     }
 }
 
