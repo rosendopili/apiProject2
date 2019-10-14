@@ -1,6 +1,6 @@
 <!-- ![PEN-NY Logo](images/PEN-NY.png) -->
 <img src="images/PEN-NY.png" alt="Logo"
-	title="PEN-NY logo" width="300" height="500" />
+	title="PEN-NY logo" width="500" height="300" />
 ## A Penny for Your Thoughts...
 Welcome to PEN-NY, a place for New Yorkers to share their thoughts and connect with other locals in the concrete jungle.
 
