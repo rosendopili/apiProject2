@@ -21,14 +21,13 @@ public class PostServiceImpl implements PostService {
 
     /**
      *
-     * @param newPost
+     * @param newPost, username
      * @return saved post.
      */
     @Override
     public Post createPost(Post newPost, String username) {
          User user = userRepository.findByUsername(username);
          newPost.setUser(user);
-         user.addPost(newPost);
 
          return postRepository.save(newPost);
 
