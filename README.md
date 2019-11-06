@@ -4,6 +4,20 @@
 ## A Penny for Your Thoughts...
 Welcome to PEN-NY, a place for New Yorkers to share their thoughts and connect with other locals in the concrete jungle.
 
+## Team Members 
+Rosendo Pili (<a href="https://github.com/rosendopili">@rosendopili</a>)<br/>
+Melissa Jeremie (<a href="https://github.com/melissa-kj">@melissa-kj</a>)<br/>
+
+
+## Instructions for download
+- Clone this repo `git@github.com:rosendopili/apiProject2.git`
+- Install PostgreSQL to your local machine using homebrew:
+
+```shell
+$ brew update
+$ brew install postgresql
+```
+
 ### Technologies Used
 
 * **HTML/CSS** - PEN-NY is based on [this project](https://github.com/rosendopili/PEN-NY-CHAT), with an updated front end design. We used HTML & CSS to build  a new single page version of the site.
