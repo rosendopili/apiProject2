@@ -41,4 +41,4 @@ As with any project, there were a few stumbling blocks. Our first round of pair 
 [Click here](https://docs.google.com/document/d/1AYhVIiWtoqI3dcMKcJkWv5oTYJyKhCW23ezuSDG5weM/edit?usp=sharing) to read the PEN-NY app user stories.
 
 #### Other Documentation
-Photos and diagrams of our work throughout the app building journey can be viewed [here](https://docs.google.com/presentation/d/1xYE1g4x3fGVbz-FgHlk0I7qb7T9dl-qQMwtvlxA6TNo/edit?usp=sharing). Examples of our PostMan tests can be viewed in the [PostManTesting](https://github.com/rosendopili/apiProject2/tree/master/PostManTesting)folder above.
+Photos and diagrams of our work throughout the app building journey can be viewed [here](https://docs.google.com/presentation/d/1xYE1g4x3fGVbz-FgHlk0I7qb7T9dl-qQMwtvlxA6TNo/edit?usp=sharing). Examples of our PostMan tests can be viewed in the [PostManTesting](https://github.com/rosendopili/apiProject2/tree/master/PostManTesting) folder above.
